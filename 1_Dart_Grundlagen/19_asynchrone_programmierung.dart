@@ -1,23 +1,25 @@
-void main() {
+import 'dart:io';
 
+void main() async {
   DataFetcher fetcher = DataFetcher();
 
-  String data = fetcher.getData();
+  String data = await fetcher.getData();
 
   print(data);
 }
 
 class DataFetcher {
-  String _getDataFromCloud() {
-    return "data from cloud";
+  Future<String> _getDataFromCloud() {
+    sleep(Duration(seconds: 3));
+    return Future.value("data from cloud");
   }
 
   String _parseDataFromCloud({required String cloudData}) {
     return "parsed Data";
   }
 
-  String getData() {
-    String cloudDataRaw = _getDataFromCloud();
+  Future<String> getData() async {
+    String cloudDataRaw = await _getDataFromCloud();
 
     String parsedData = _parseDataFromCloud(cloudData: cloudDataRaw);
 

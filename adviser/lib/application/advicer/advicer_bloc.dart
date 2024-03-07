@@ -3,15 +3,15 @@ import 'package:adviser/domain/failures/failures.dart';
 import 'package:adviser/domain/usecases/advicer_usecases.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-//import 'package:meta/meta.dart';
+import 'package:meta/meta.dart';
 
 part 'advicer_event.dart';
 part 'advicer_state.dart';
 
 class AdvicerBloc extends Bloc<AdvicerEvent, AdvicerState> {
-  AdvicerBloc() : super(AdvicerInitial()) {
-    final usecases = AdvicerUsecases();
+  final AdvicerUsecases usecases;
 
+  AdvicerBloc({required this.usecases}) : super(AdvicerInitial()) {
     on<AdviceRequestedEvent>((event, emit) async {
       emit(AdvicerStateLoading());
 

@@ -4,11 +4,11 @@ import 'package:adviser/domain/repositories/advicer_repository.dart';
 import 'package:adviser/infrastructure/datasources/advicer_remote_datasource.dart';
 import 'package:adviser/infrastructure/exceptions/exceptions.dart';
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart';
 
-class AdvicerRepsoitoryImpl implements AdvicerRespository {
-  final AdvicerRemoteDatasource advicerRemoteDatasource =
-      AdvicerRemoteDatasourceImpl();
+class AdvicerRepositoryImpl implements AdvicerRepository {
+  final AdvicerRemoteDatasource advicerRemoteDatasource;
+
+  AdvicerRepositoryImpl({required this.advicerRemoteDatasource});
 
   @override
   Future<Either<Failure, AdviceEntity>> getAdviceFromApi() async {
@@ -17,10 +17,11 @@ class AdvicerRepsoitoryImpl implements AdvicerRespository {
           await advicerRemoteDatasource.getRandomAdviceFromApi();
       return Right(remoteAdvice);
     } catch (e) {
-      if (e.runtimeType == ServerException)
+      if (e.runtimeType == ServerException) {
         return Left(ServerFailure());
-      else
+      } else {
         return Left(GeneralFailure());
+      }
     }
   }
 }

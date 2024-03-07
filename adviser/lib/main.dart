@@ -1,10 +1,17 @@
 import 'package:adviser/application/advicer/advicer_bloc.dart';
+import 'package:adviser/injection.dart';
 import 'package:adviser/presentation/advicer/adviser_page.dart';
 import 'package:adviser/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+import 'injection.dart' as di;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await di.init();
+
   runApp(const MyAdviser());
 }
 
@@ -21,7 +28,7 @@ class MyAdviser extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
       home: BlocProvider(
-        create: (context) => AdvicerBloc(),
+        create: (context) => sl<AdvicerBloc>(),
         child: const AdviserPage(),
       ),
     );

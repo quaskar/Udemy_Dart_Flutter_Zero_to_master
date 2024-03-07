@@ -1,7 +1,7 @@
 part of 'advicer_bloc.dart';
 
 @immutable
-sealed class AdvicerEvent {}
+abstract class AdvicerEvent {}
 
 /// event when button pressed
 class AdviceRequestedEvent extends AdvicerEvent {}

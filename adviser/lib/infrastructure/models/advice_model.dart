@@ -1,6 +1,5 @@
 import 'package:adviser/domain/entities/advice_entity.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/gestures.dart';
 
 class AdviceModel extends AdviceEntity with EquatableMixin {
   AdviceModel({required String advice, required int id})
@@ -11,6 +10,5 @@ class AdviceModel extends AdviceEntity with EquatableMixin {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [advice, id];
 }

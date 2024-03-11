@@ -30,7 +30,7 @@ void main() {
   }
 
   group("getRandomAdviceFromApi", () {
-    final t_adviceModel = AdviceModel(advice: "test", id: 1);
+    final tAdviceModel = AdviceModel(advice: "test", id: 1);
 
     test(
         "should perform a get request on a URAL with advice being the end point and header application/json",
@@ -56,7 +56,7 @@ void main() {
       final result = await advicerRemoteDatasource.getRandomAdviceFromApi();
 
       // assert
-      expect(result, t_adviceModel);
+      expect(result, tAdviceModel);
     });
 
     test("should throw server exception is server response is not 200", () {
@@ -67,7 +67,7 @@ void main() {
       final call = advicerRemoteDatasource.getRandomAdviceFromApi;
 
       // assert
-      expect(() => call(), throwsA(TypeMatcher<ServerException>()));
+      expect(() => call(), throwsA(const TypeMatcher<ServerException>()));
     });
   });
 }
